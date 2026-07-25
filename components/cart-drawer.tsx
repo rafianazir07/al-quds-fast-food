@@ -37,7 +37,8 @@ export function CartDrawer() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-105"
+        style={{ bottom: "max(1.25rem, calc(env(safe-area-inset-bottom) + 0.75rem))" }}
+        className="fixed right-4 z-40 flex min-h-14 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-lg transition-transform active:scale-95 sm:right-5 sm:hover:scale-105"
         aria-label="Open cart"
       >
         <ShoppingCart className="h-5 w-5" />
@@ -54,19 +55,19 @@ export function CartDrawer() {
           <div className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} aria-hidden="true" />
 
           <div className="relative flex h-full w-full max-w-sm flex-col bg-background shadow-2xl">
-            <div className="flex items-center justify-between border-b border-border/60 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-border/60 px-4 py-3 sm:px-5 sm:py-4">
               <h2 className="font-display text-xl font-bold uppercase text-foreground">Your Cart</h2>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-primary"
+                className="-mr-2 flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors active:text-primary sm:hover:text-primary"
                 aria-label="Close cart"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-5 py-4">
+            <div className="flex-1 overflow-y-auto px-4 py-4 sm:px-5">
               {items.length === 0 ? (
                 <p className="mt-10 text-center text-sm text-muted-foreground">
                   Your cart is empty. Add something tasty from the menu!
@@ -78,29 +79,29 @@ export function CartDrawer() {
                       key={item.id}
                       className="flex items-start justify-between gap-3 border-b border-border/50 pb-4"
                     >
-                      <div className="flex-1">
+                      <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold text-foreground">
                           {item.name}
                           {item.label && <span className="text-muted-foreground"> ({item.label})</span>}
                         </p>
                         <p className="mt-0.5 text-xs text-muted-foreground">{formatPrice(item.price)} each</p>
-                        <div className="mt-2 flex items-center gap-2">
+                        <div className="mt-2 flex items-center gap-1">
                           <button
                             type="button"
                             onClick={() => updateQty(item.id, item.qty - 1)}
-                            className="flex h-6 w-6 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary"
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-foreground transition-colors active:border-primary active:text-primary sm:hover:border-primary sm:hover:text-primary"
                             aria-label="Decrease quantity"
                           >
-                            <Minus className="h-3 w-3" />
+                            <Minus className="h-3.5 w-3.5" />
                           </button>
-                          <span className="w-5 text-center text-sm font-medium text-foreground">{item.qty}</span>
+                          <span className="w-7 text-center text-sm font-medium text-foreground">{item.qty}</span>
                           <button
                             type="button"
                             onClick={() => updateQty(item.id, item.qty + 1)}
-                            className="flex h-6 w-6 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary"
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-foreground transition-colors active:border-primary active:text-primary sm:hover:border-primary sm:hover:text-primary"
                             aria-label="Increase quantity"
                           >
-                            <Plus className="h-3 w-3" />
+                            <Plus className="h-3.5 w-3.5" />
                           </button>
                         </div>
                       </div>
@@ -111,7 +112,7 @@ export function CartDrawer() {
                         <button
                           type="button"
                           onClick={() => removeItem(item.id)}
-                          className="text-muted-foreground transition-colors hover:text-destructive"
+                          className="flex h-8 w-8 items-center justify-center text-muted-foreground transition-colors active:text-destructive sm:hover:text-destructive"
                           aria-label="Remove item"
                         >
                           <Trash2 className="h-4 w-4" />
@@ -124,7 +125,10 @@ export function CartDrawer() {
             </div>
 
             {items.length > 0 && (
-              <div className="border-t border-border/60 px-5 py-4">
+              <div
+                className="border-t border-border/60 px-4 pt-4 sm:px-5"
+                style={{ paddingBottom: "max(1rem, calc(env(safe-area-inset-bottom) + 0.5rem))" }}
+              >
                 <div className="flex items-center justify-between text-base font-semibold text-foreground">
                   <span>Subtotal</span>
                   <span>{formatPrice(subtotal)}</span>
@@ -135,7 +139,7 @@ export function CartDrawer() {
                 <button
                   type="button"
                   onClick={handleWhatsAppOrder}
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+                  className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 text-sm font-semibold text-white transition-transform active:scale-95 sm:hover:scale-[1.02]"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Order via WhatsApp
@@ -143,7 +147,7 @@ export function CartDrawer() {
                 <button
                   type="button"
                   onClick={clearCart}
-                  className="mt-2 w-full text-center text-xs font-medium text-muted-foreground transition-colors hover:text-destructive"
+                  className="mt-1 min-h-11 w-full text-center text-xs font-medium text-muted-foreground transition-colors active:text-destructive sm:hover:text-destructive"
                 >
                   Clear Cart
                 </button>

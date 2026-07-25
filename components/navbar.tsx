@@ -16,12 +16,12 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <a href="#top" className="flex items-center gap-3">
-          <span className="font-display text-2xl font-bold uppercase tracking-wide text-primary">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2.5 sm:py-3">
+        <a href="#top" className="flex min-w-0 items-center gap-2 sm:gap-3">
+          <span className="truncate font-display text-xl font-bold uppercase tracking-wide text-primary sm:text-2xl">
             Al Quds
           </span>
-          <span className="text-xl text-primary/80" aria-hidden="true">
+          <span className="shrink-0 text-lg text-primary/80 sm:text-xl" aria-hidden="true">
             {contact.arabic}
           </span>
         </a>
@@ -48,7 +48,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="rounded-md p-2 text-foreground md:hidden"
+          className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-foreground md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -57,21 +57,21 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border/60 bg-background md:hidden">
+        <div className="max-h-[calc(100dvh-56px)] overflow-y-auto border-t border-border/60 bg-background md:hidden">
           <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-primary"
+                className="flex min-h-11 items-center rounded-md px-3 text-base font-medium text-muted-foreground active:bg-secondary active:text-primary"
               >
                 {l.label}
               </a>
             ))}
             <a
               href={contact.phoneHref}
-              className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
+              className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground"
             >
               <Phone className="h-4 w-4" />
               {contact.phone}

@@ -12,7 +12,7 @@ function MenuCard({ item }: { item: MenuItem }) {
   const { addItem } = useCart()
 
   return (
-    <div className="flex flex-col rounded-xl border border-border/70 bg-card p-5 transition-colors hover:border-primary/60">
+    <div className="flex flex-col rounded-xl border border-border/70 bg-card p-4 transition-colors active:border-primary/60 sm:p-5 sm:hover:border-primary/60">
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-display text-lg font-semibold uppercase tracking-wide text-foreground">
           {item.name}
@@ -39,10 +39,10 @@ function MenuCard({ item }: { item: MenuItem }) {
                 price: p.amount,
               })
             }
-            className="group inline-flex items-center gap-1.5 rounded-md bg-secondary px-2.5 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+            className="group inline-flex min-h-11 items-center gap-1.5 rounded-md bg-secondary px-3 py-2 text-sm font-semibold text-primary transition-colors active:bg-primary active:text-primary-foreground sm:hover:bg-primary sm:hover:text-primary-foreground"
           >
             {p.label && (
-              <span className="text-[11px] font-medium uppercase text-muted-foreground group-hover:text-primary-foreground/80">
+              <span className="text-[11px] font-medium uppercase text-muted-foreground group-active:text-primary-foreground/80 sm:group-hover:text-primary-foreground/80">
                 {p.label}
               </span>
             )}
@@ -57,7 +57,7 @@ function MenuCard({ item }: { item: MenuItem }) {
 
 export function MenuSection() {
   return (
-    <section id="menu" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16">
+    <section id="menu" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-10 sm:py-16">
       <div className="text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Our Kitchen</p>
         <h2 className="mt-2 font-display text-4xl font-bold uppercase tracking-tight text-foreground sm:text-5xl">
@@ -68,16 +68,16 @@ export function MenuSection() {
         </p>
       </div>
 
-      <div className="mt-12 space-y-14">
+      <div className="mt-8 space-y-10 sm:mt-12 sm:space-y-14">
         {menu.map((category) => (
           <div key={category.id} id={category.id} className="scroll-mt-20">
-            <div className="mb-6 flex items-center gap-4">
-              <h3 className="font-display text-3xl font-bold uppercase tracking-wide text-primary">
+            <div className="mb-4 flex items-center gap-4 sm:mb-6">
+              <h3 className="font-display text-2xl font-bold uppercase tracking-wide text-primary sm:text-3xl">
                 {category.title}
               </h3>
               <span className="h-px flex-1 bg-border" />
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
               {category.items.map((item) => (
                 <MenuCard key={item.name} item={item} />
               ))}
