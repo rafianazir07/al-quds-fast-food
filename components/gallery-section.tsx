@@ -1,19 +1,58 @@
-import Image from "next/image"
-import { ImageIcon } from "lucide-react"
+"use client"
 
-// These are stand-in illustrations (not real photos) so the section never
-// renders blank. Swap in real restaurant photography by dropping JPG/PNG
-// files into /public/images/gallery/ and updating the `src` paths below —
-// no other code changes needed. Recommended: square images, 1000x1000px+,
-// under ~300KB each (run them through an image compressor before adding).
+import { useState } from "react"
+import Image from "next/image"
+import { UtensilsCrossed } from "lucide-react"
+
+// Real restaurant photos go here. Drop each JPG into /public/gallery/ using
+// the exact filename listed below — the section is already fully wired to
+// them, so no other code changes are needed once the files are in place.
+//   /public/gallery/signature-burger.jpg
+//   /public/gallery/arabian-wrap.jpg
+//   /public/gallery/fresh-off-the-grill.jpg
+//   /public/gallery/crispy-fried-chicken-platter.jpg
+//   /public/gallery/chinese-rice-noodles.jpg
+//   /public/gallery/italian-style-pasta.jpg
+// Recommended: square crop, 1200x1200px+, exported as JPG at ~70-80% quality
+// (aim for under 300KB each) for fast mobile loading.
 const galleryImages = [
-  { src: "/images/gallery/burger.svg", alt: "Signature burger at Al Quds Fast Food" },
-  { src: "/images/gallery/wrap.svg", alt: "Arabian wrap fresh off the grill" },
-  { src: "/images/gallery/fried-chicken.svg", alt: "Crispy fried chicken platter" },
-  { src: "/images/gallery/rice-noodles.svg", alt: "Chinese rice and noodles" },
-  { src: "/images/gallery/pasta.svg", alt: "Italian-style pasta" },
-  { src: "/images/gallery/storefront.svg", alt: "Al Quds Fast Food storefront on Harley Street" },
+  { src: "/gallery/signature-burger.jpg", alt: "Signature Burger at Al Quds Fast Food" },
+  { src: "/gallery/arabian-wrap.jpg", alt: "Arabian Wrap" },
+  { src: "/gallery/fresh-off-the-grill.jpg", alt: "Fresh Off the Grill" },
+  { src: "/gallery/crispy-fried-chicken-platter.jpg", alt: "Crispy Fried Chicken Platter" },
+  { src: "/gallery/chinese-rice-noodles.jpg", alt: "Chinese Rice & Noodles" },
+  { src: "/gallery/italian-style-pasta.jpg", alt: "Italian Style Pasta" },
 ]
+
+function GalleryTile({ src, alt }: { src: string; alt: string }) {
+  const [failed, setFailed] = useState(false)
+
+  return (
+    <div className="group relative aspect-square overflow-hidden rounded-2xl border border-border/70 bg-card">
+      {!failed ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 640px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 active:scale-105 sm:group-hover:scale-105"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        // Neutral fallback shown only if the photo file above hasn't been
+        // added to /public/gallery/ yet — never a broken-image icon.
+        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-card px-3 text-center">
+          <UtensilsCrossed className="h-6 w-6 text-muted-foreground/60" aria-hidden="true" />
+          <span className="text-xs font-medium text-muted-foreground">{alt}</span>
+        </div>
+      )}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100" />
+      <div className="absolute bottom-2 left-2 right-2 flex items-center gap-1.5 text-xs font-medium text-white opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
+        <span className="truncate drop-shadow">{alt}</span>
+      </div>
+    </div>
+  )
+}
 
 export function GallerySection() {
   return (
@@ -29,24 +68,8 @@ export function GallerySection() {
       </div>
 
       <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4">
-        {galleryImages.map((img, i) => (
-          <div
-            key={i}
-            className="group relative aspect-square overflow-hidden rounded-2xl border border-border/70 bg-card"
-          >
-            <Image
-              src={img.src || "/placeholder.svg"}
-              alt={img.alt}
-              fill
-              sizes="(max-width: 640px) 50vw, 33vw"
-              className="object-cover transition-transform duration-300 active:scale-105 sm:group-hover:scale-105"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100" />
-            <div className="absolute bottom-2 left-2 right-2 flex items-center gap-1.5 text-xs font-medium text-white opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
-              <ImageIcon className="h-3.5 w-3.5 shrink-0" />
-              <span className="truncate drop-shadow">{img.alt}</span>
-            </div>
-          </div>
+        {galleryImages.map((img) => (
+          <GalleryTile key={img.src} src={img.src} alt={img.alt} />
         ))}
       </div>
     </section>
