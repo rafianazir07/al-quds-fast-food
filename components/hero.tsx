@@ -4,7 +4,7 @@ import { contact } from "@/lib/menu-data"
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section className="relative overflow-hidden">
       <div className="mx-auto grid max-w-6xl items-center gap-6 px-4 py-8 sm:gap-8 sm:py-12 md:grid-cols-2 md:py-20">
         <div className="order-2 text-center md:order-1 md:text-left">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">

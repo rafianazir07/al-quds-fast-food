@@ -21,7 +21,7 @@ export const menu: MenuCategory[] = [
       {
         name: "Cocain",
         signature: true,
-        description: "Buttered bun minced patti & aloo chunks with cheese & jalapeno mushroom sauce",
+        description: "Buttered bun minced patty & aloo chunks with cheese & jalapeno mushroom sauce",
         prices: [{ amount: 1099 }],
       },
       {
@@ -50,10 +50,10 @@ export const menu: MenuCategory[] = [
       },
       {
         name: "Capture",
-        description: "Beef smash bar B.Q grilled cheese with cocktail sauce",
+        description: "Beef smash bar BBQ grilled cheese with cocktail sauce",
         prices: [
-          { label: "Single Patti", amount: 599 },
-          { label: "Double Patti", amount: 749 },
+          { label: "Single Patty", amount: 599 },
+          { label: "Double Patty", amount: 749 },
         ],
       },
       {
@@ -64,7 +64,7 @@ export const menu: MenuCategory[] = [
       },
       {
         name: "Smokiya",
-        description: "Buttered bun chicken thai steak cheese with chipotle sauce",
+        description: "Buttered bun Thai chicken steak cheese with chipotle sauce",
         prices: [{ amount: 699 }],
       },
       {
@@ -133,7 +133,7 @@ export const menu: MenuCategory[] = [
       {
         name: "Khubs Al Laham",
         signature: true,
-        description: "Baik beef with lubna sauce & humus vinegar veges",
+        description: "Baik beef with lubna sauce & hummus vinegar vegetables",
         prices: [{ amount: 899 }],
       },
       {
@@ -145,7 +145,7 @@ export const menu: MenuCategory[] = [
       {
         name: "Khubs Al Dajaj",
         signature: true,
-        description: "Baik chicken with lubna sauce & humus vinegar veges",
+        description: "Baik chicken with lubna sauce & hummus vinegar vegetables",
         prices: [{ amount: 899 }],
       },
       {
@@ -211,7 +211,7 @@ export const menu: MenuCategory[] = [
       },
       {
         name: "Chowmein",
-        description: "Smoky chicken grilled veges & chilli sauce",
+        description: "Smoky chicken grilled vegetables & chilli sauce",
         prices: [{ amount: 799 }],
       },
     ],
