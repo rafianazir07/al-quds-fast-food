@@ -4,24 +4,37 @@ import { useState } from "react"
 import Image from "next/image"
 import { UtensilsCrossed } from "lucide-react"
 
-// Real restaurant photos go here. Drop each JPG into /public/gallery/ using
-// the exact filename listed below — the section is already fully wired to
-// them, so no other code changes are needed once the files are in place.
-//   /public/gallery/signature-burger.jpg
-//   /public/gallery/arabian-wrap.jpg
-//   /public/gallery/fresh-off-the-grill.jpg
-//   /public/gallery/crispy-fried-chicken-platter.jpg
-//   /public/gallery/chinese-rice-noodles.jpg
-//   /public/gallery/italian-style-pasta.jpg
-// Recommended: square crop, 1200x1200px+, exported as JPG at ~70-80% quality
-// (aim for under 300KB each) for fast mobile loading.
+// Real restaurant-style food photography, hotlinked from Unsplash (free to
+// use commercially, no attribution required, no local storage needed).
+// To switch to your own local photos instead: drop a JPG into
+// /public/gallery/ using the filename in the comment on each line below,
+// then change that line's src to "/gallery/<filename>.jpg". No other code
+// changes are needed either way.
 const galleryImages = [
-  { src: "/gallery/signature-burger.jpg", alt: "Signature Burger at Al Quds Fast Food" },
-  { src: "/gallery/arabian-wrap.jpg", alt: "Arabian Wrap" },
-  { src: "/gallery/fresh-off-the-grill.jpg", alt: "Fresh Off the Grill" },
-  { src: "/gallery/crispy-fried-chicken-platter.jpg", alt: "Crispy Fried Chicken Platter" },
-  { src: "/gallery/chinese-rice-noodles.jpg", alt: "Chinese Rice & Noodles" },
-  { src: "/gallery/italian-style-pasta.jpg", alt: "Italian Style Pasta" },
+  {
+    src: "https://images.unsplash.com/photo-1572448862527-d3c904757de6?w=1200&h=1200&fit=crop&q=80&auto=format", // /gallery/signature-burger.jpg
+    alt: "Signature Burger at Al Quds Fast Food",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=1200&h=1200&fit=crop&q=80&auto=format", // /gallery/arabian-wrap.jpg
+    alt: "Arabian Wrap",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1767974968707-db3d448d4ef3?w=1200&h=1200&fit=crop&q=80&auto=format", // /gallery/fresh-off-the-grill.jpg
+    alt: "Fresh Off the Grill",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1657271511865-f610b280dca4?w=1200&h=1200&fit=crop&q=80&auto=format", // /gallery/crispy-fried-chicken-platter.jpg
+    alt: "Crispy Fried Chicken Platter",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1569058242261-35d2acbc5675?w=1200&h=1200&fit=crop&q=80&auto=format", // /gallery/chinese-rice-noodles.jpg
+    alt: "Chinese Rice & Noodles",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1662197480393-2a82030b7b83?w=1200&h=1200&fit=crop&q=80&auto=format", // /gallery/italian-style-pasta.jpg
+    alt: "Italian Style Pasta",
+  },
 ]
 
 function GalleryTile({ src, alt }: { src: string; alt: string }) {
